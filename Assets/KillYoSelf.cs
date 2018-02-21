@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class KillYoSelf : MonoBehaviour
 {
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, 3);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.position = new Vector3(1000, 1000, 1000);
+            Destroy(gameObject, 2);
+        }
     }
 }

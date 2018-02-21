@@ -5,12 +5,12 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public GameObject projectile;
-    bool TimeToShoot;
+    bool CanShoot;
     float time = 0.0f;
     float ShotTimer = 1.0f;
     void Start()
     {
-        TimeToShoot = true;
+        CanShoot = true;
     }
     void Update()
     {
@@ -19,7 +19,7 @@ public class BulletScript : MonoBehaviour
         if (time >= ShotTimer)
         {
             time = time - ShotTimer;
-            if (TimeToShoot == true)
+            if (CanShoot == true)
             {
                 SpawnBullet();
             }
@@ -32,12 +32,12 @@ public class BulletScript : MonoBehaviour
     }
     public void CantFire()
     {
-        TimeToShoot = false;
+        CanShoot = false;
         print("I Cant shoot");
     }
     public void CanFire()
     {
-        TimeToShoot = true;
+        CanShoot = true;
         print("I Cant shoot");
     }
 }
