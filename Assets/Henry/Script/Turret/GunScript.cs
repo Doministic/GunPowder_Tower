@@ -11,12 +11,14 @@ public class GunScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(Vector3.forward * 50.0f * Time.deltaTime);
-                GetComponentInChildren<BulletScript>().CantFire();
+                transform.Rotate(Vector3.forward * 50 * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.D))
             {
                 transform.Rotate(Vector3.forward * -1.0f * 50 * Time.deltaTime);
+            }
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            {
                 GetComponentInChildren<BulletScript>().CantFire();
             }
             if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoNoZone : MonoBehaviour {
+public class NoNoZone : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void OnTriggerEnter(Collider other)
+    {
+        print("Something WENT IN ME!!!!");
+    }
+    void OnTriggerExit(Collider other)
+    {
+        print("Something went boop");
+    }
 }
