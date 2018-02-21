@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NoNoZone : MonoBehaviour
 {
-
     // Use this for initialization
     void OnTriggerEnter(Collider other)
     {
@@ -15,3 +14,9 @@ public class NoNoZone : MonoBehaviour
         print("Something went boop");
     }
 }
+
+
+
+
+
+
