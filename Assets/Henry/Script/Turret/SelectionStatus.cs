@@ -9,6 +9,7 @@ public class SelectionStatus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         iSeeMouse = false;
         iAmSelected = false;
     }

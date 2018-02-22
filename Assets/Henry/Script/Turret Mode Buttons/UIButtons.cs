@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UiButtons : MonoBehaviour {
+public class UIButtons : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
