@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour {
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1)
+        if (SceneManager.GetActiveScene().buildIndex > 2)
         {
            // Debug.Log("Index is greater than 0");
         }
