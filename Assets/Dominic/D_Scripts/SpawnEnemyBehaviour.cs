@@ -4,30 +4,60 @@ using UnityEngine;
 
 public class SpawnEnemyBehaviour : MonoBehaviour {
 
-	public float timeCounter = 40.0f;
-	public GameObject EnemyToSpawn;
 
-	private bool isSpawning = false;
-	IEnumerator SpawnEnemy(){	
+	public GameObject enemyToSpawn;
+	public List<GameObject> enemySpawnLocations = new List<GameObject>();
+	public float startWait;
+	public float spawnWait;
+	public float waveWait;
 
-		Instantiate(EnemyToSpawn, transform.position, Quaternion.identity);
-		yield return new WaitForSeconds(4);
+	private int index;
+	private int enemyCount;
 
-		isSpawning = false;
 
-	}
-
-	void Start () {
-		//StartCoroutine(SpawnEnemy());
-	}
-	
-	void Update () {
-		timeCounter -= Time.deltaTime;
-		if(timeCounter >= 0 && isSpawning == false){
-			isSpawning = true;
-			StartCoroutine(SpawnEnemy());
+	IEnumerator SpawnEnemyCoroutine(){	
+		int minEnemyCount = 10;
+		int maxEnemyCount = 50;
+		enemyCount = Random.Range(minEnemyCount, maxEnemyCount);
+		yield return new WaitForSeconds(startWait);
+		while (true){
+			for(int i = 0; i <= enemyCount; i++){
+				SpawnEnemy();
+				yield return new WaitForSeconds(spawnWait);
+			}
+			yield return new WaitForSeconds(waveWait);
 		}
-	}
 
-	
+	}
+	void Start()
+	{	
+		StartCoroutine(SpawnEnemyCoroutine());	
+	}
+	void Update()
+	{
+		index = Random.Range(0, enemySpawnLocations.Count);
+		Debug.Log(index);	
+	}
+	void SpawnEnemy(){
+		if (index == 0){
+			float minX = -75.0f;
+			float maxX = 75.0f;
+			float randomX = Random.Range(minX, maxX);
+			Vector3 spawnPoint0 = new Vector3(randomX, enemySpawnLocations[0].transform.position.y, enemySpawnLocations[0].transform.position.z);
+			Instantiate(enemyToSpawn, spawnPoint0, Quaternion.identity);
+		}
+		else if (index == 1){
+			float minY = 0.0f;
+			float maxY = 50.0f;
+			float randomY = Random.Range(minY, maxY);
+			Vector3 spawnPoint1 = new Vector3(enemySpawnLocations[1].transform.position.x, randomY, enemySpawnLocations[1].transform.position.z);
+			Instantiate(enemyToSpawn, spawnPoint1, Quaternion.identity);				}
+		else if (index == 2){
+			float minY = 0.0f;
+			float maxY = 50.0f;
+			float randomY = Random.Range(minY, maxY);
+			Vector3 spawnPoint2 = new Vector3(enemySpawnLocations[2].transform.position.x, randomY, enemySpawnLocations[2].transform.position.z);
+			Instantiate(enemyToSpawn, spawnPoint2, Quaternion.identity);
+		}
+	}		
 }
