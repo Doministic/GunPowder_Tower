@@ -28,7 +28,7 @@ public class BulletScript : MonoBehaviour
     public void SpawnBullet()
     {
         GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-        bullet.GetComponent<Rigidbody>().AddForce(transform.up * 1000.0f);
+        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 1000.0f);
     }
     public void CantFire()
     {
