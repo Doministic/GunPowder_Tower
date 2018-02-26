@@ -5,7 +5,6 @@ using UnityEngine;
 public class AIMovementBehavior : MonoBehaviour {
 
 	public Transform targetMoveToObject;
-	public Transform currentSpawnLocation;
 	public float maxMovementSpeed = 7.5f;
 	public float minMovementSpeed = 3.5f;
 
@@ -23,11 +22,11 @@ public class AIMovementBehavior : MonoBehaviour {
 	}
 	IEnumerator MoveEnemy(){
 		while(transform.position != targetMoveToObject.position){
-			transform.position = Vector3.MoveTowards(transform.position, targetMoveToObject.position, step);
+			transform.position = Vector2.MoveTowards(transform.position, targetMoveToObject.position, step);
 			yield return null;
 		}
 	}
-	public void OnCollisionEnter(Collision otherCollider){
+	public void OnCollisionEnter2D(Collision2D otherCollider){
 		if(otherCollider.gameObject.tag == "HomeBase"){
 			Die();
 		}
