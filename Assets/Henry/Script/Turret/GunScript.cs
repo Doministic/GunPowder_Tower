@@ -5,28 +5,14 @@ using UnityEngine;
 public class GunScript : MonoBehaviour
 {
     public bool MovementReady;
+    public Transform MosLocation;
     void Update()
     {
-        if (MovementReady == true)
+        transform.LookAt(MosLocation);
+        if (transform.localEulerAngles.x > 0)
         {
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.Rotate(Vector3.forward * 50 * Time.deltaTime);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Rotate(Vector3.forward * -1.0f * 50 * Time.deltaTime);
-            }
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-            {
-                GetComponentInChildren<BulletScript>().CantFire();
-            }
-            if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
-            {
-                GetComponentInChildren<BulletScript>().CanFire();
-            }
+            transform.localEulerAngles = new Vector3 (Mathf.Clamp(transform.localEulerAngles.x,0,180),transform.localEulerAngles.y,transform.localEulerAngles.z);
         }
-
     }
     public void readyToMove()
     {
