@@ -40,24 +40,24 @@ public class SpawnEnemyBehaviour : MonoBehaviour {
 	}
 	void SpawnEnemy(){
 		if (index == 0){
-			float minX = -75.0f;
-			float maxX = 75.0f;
+			float minX = -10.0f;
+			float maxX = 10.0f;
 			float randomX = Random.Range(minX, maxX);
-			Vector3 spawnPoint0 = new Vector2(randomX, enemySpawnLocations[0].transform.position.y);
+			Vector2 spawnPoint0 = new Vector2(randomX, enemySpawnLocations[0].transform.position.y);
 			Instantiate(enemyToSpawn, spawnPoint0, Quaternion.identity);
 		}
 		else if (index == 1){
 			float minY = 0.0f;
-			float maxY = 50.0f;
+			float maxY = 10.0f;
 			float randomY = Random.Range(minY, maxY);
-			Vector3 spawnPoint1 = new Vector2(enemySpawnLocations[1].transform.position.x, randomY);
+			Vector2 spawnPoint1 = new Vector2(enemySpawnLocations[1].transform.position.x, randomY);
 			Instantiate(enemyToSpawn, spawnPoint1, Quaternion.identity);				
 		}
 		else if (index == 2){
 			float minY = 0.0f;
-			float maxY = 50.0f;
+			float maxY = 10.0f;
 			float randomY = Random.Range(minY, maxY);
-			Vector3 spawnPoint2 = new Vector2(enemySpawnLocations[2].transform.position.x, randomY);
+			Vector2 spawnPoint2 = new Vector2(enemySpawnLocations[2].transform.position.x, randomY);
 			Instantiate(enemyToSpawn, spawnPoint2, Quaternion.identity);
 		}
 	}		
