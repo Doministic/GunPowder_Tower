@@ -8,11 +8,16 @@ public class GunScript : MonoBehaviour
     public Transform MosLocation;
     void Update()
     {
-        transform.LookAt(MosLocation);
-        if (transform.localEulerAngles.x > 0)
+        if (MovementReady == true)
         {
-            transform.localEulerAngles = new Vector3 (Mathf.Clamp(transform.localEulerAngles.x,0,180),transform.localEulerAngles.y,transform.localEulerAngles.z);
+            if (Input.GetMouseButtonDown (1))
+            {
+            transform.LookAt(MosLocation);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.Clamp(transform.localEulerAngles.y, 45, 135), transform.localEulerAngles.z);
+
+            }
         }
+
     }
     public void readyToMove()
     {
