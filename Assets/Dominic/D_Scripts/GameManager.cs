@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : BaseSingletonBehaviour<GameManager> {
 
-	public float minutesInGame = 1;
-
 	private float timeRemaining;
-	private float maxTime;
+	private float maxTime = 180;
 
 	void Start () {
-		maxTime = minutesInGame * 60;
 		timeRemaining = maxTime;
 	}
 	

@@ -8,11 +8,6 @@ public class UpdateUIBehaviour : MonoBehaviour {
 	[SerializeField]
 	private Text timerLabel;
 
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update () {
 		timerLabel.text = ForamtTime (GameManager.Instance.TimeRemaining);
 	}
