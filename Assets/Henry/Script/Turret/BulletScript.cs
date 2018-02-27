@@ -10,7 +10,7 @@ public class BulletScript : MonoBehaviour
     float ShotTimer = 1.0f;
     void Start()
     {
-        CanShoot = false;
+        CanShoot = true;
     }
     void Update()
     {
