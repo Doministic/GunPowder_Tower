@@ -5,14 +5,27 @@ using UnityEngine;
 public class GunScript : MonoBehaviour
 {
     public bool MovementReady;
-    public Transform MosLocation;
+    GameObject MosLocation;
+    void Start()
+    {
+        MosLocation = GameObject.Find("MouseCursor");
+        transform.LookAt(MosLocation.transform);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.Clamp(transform.localEulerAngles.y, 45, 135), transform.localEulerAngles.z);
+    }
+
     void Update()
     {
-        transform.LookAt(MosLocation);
-        if (transform.localEulerAngles.x > 0)
+        if (MovementReady == true)
         {
-            transform.localEulerAngles = new Vector3 (Mathf.Clamp(transform.localEulerAngles.x,0,180),transform.localEulerAngles.y,transform.localEulerAngles.z);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                print("space pressed");
+                transform.LookAt(MosLocation.transform);
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.Clamp(transform.localEulerAngles.y, 45, 135), transform.localEulerAngles.z);
+
+            }
         }
+
     }
     public void readyToMove()
     {
