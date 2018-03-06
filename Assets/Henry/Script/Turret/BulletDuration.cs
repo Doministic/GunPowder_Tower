@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletDuration : MonoBehaviour
 {
+    public Transform bulletPrefab;
     public void Start()
     {
         Destroy(gameObject, 2);
