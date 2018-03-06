@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIButtons : MonoBehaviour
 {
-    GunScript SelectedTurrets;
+    public GameObject[] SelectedTurrets;
 
 
     public bool Eco;
@@ -13,8 +13,7 @@ public class UIButtons : MonoBehaviour
 
     void Start()
     {
-        SelectedTurrets = GetComponent<GunScript>();
-
+        SelectedTurrets = GameObject.FindGameObjectsWithTag("turret");
     }
 
     // Update is called once per frame
@@ -27,8 +26,10 @@ public class UIButtons : MonoBehaviour
         if (Eco == true)
         {
             print(" Eco");
-            SelectedTurrets.printStrings();
-
+            foreach (GameObject turret in SelectedTurrets)
+            {
+                print("hello");
+            }
         }
         if (Auto == true)
         {
