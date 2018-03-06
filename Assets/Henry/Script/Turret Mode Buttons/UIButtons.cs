@@ -14,7 +14,6 @@ public class UIButtons : MonoBehaviour
     void Start()
     {
         SelectedTurrets = GetComponent<GunScript>();
-
     }
 
     // Update is called once per frame

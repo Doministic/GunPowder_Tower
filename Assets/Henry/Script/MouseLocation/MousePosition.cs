@@ -14,9 +14,9 @@ public class MousePosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mosPos = Input.mousePosition;
-        mosPos.z = 10;
-        mosPos = Camera.main.ScreenToWorldPoint(mosPos);
-        transform.position = mosPos;
+    }
+    public void MoveToMousePosition()
+    {
+        print("blach");
     }
 }
