@@ -13,7 +13,7 @@ public class MouseLookAt : MonoBehaviour
     void Start()
     {
         MouseCursor = GameObject.Find("MouseCursor");
-        mosPos = GetComponent<MousePosition>();
+        mosPos = MouseCursor.GetComponent<MousePosition>();
     }
 
     // Update is called once per frame
