@@ -19,22 +19,16 @@ public class AIMovementBehavior : MonoBehaviour
     {
         step = Random.Range(minMovementSpeed, maxMovementSpeed);
         health = maxHealth;
-        //StartCoroutine(MoveEnemy());
+        StartCoroutine(MoveEnemy());
     }
 
-    /*IEnumerator MoveEnemy(){
+    IEnumerator MoveEnemy(){
 		while(transform.position != targetMoveToObject.transform.position){
 			transform.position = Vector3.MoveTowards(transform.position, targetMoveToObject.transform.position, step * Time.deltaTime);
-			Debug.Log(transform.position);
-			yield return null;
+			Debug.Log(transform.position);	
 		}
-	}*/
-
-    void Update()
-    {
-      step = step * Time.deltaTime;
-	  transform.position = Vector3.MoveTowards(transform.position, targetMoveToObject.position, step);  
-    }
+        yield return null;
+	}
 
     public void OnCollisionEnter2D(Collision2D otherCollider)
     {
