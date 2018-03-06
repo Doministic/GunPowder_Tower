@@ -7,7 +7,7 @@ public class BulletScript : MonoBehaviour
     public GameObject projectile;
     bool CanShoot;
     float time = 0.0f;
-    float ShotTimer = .2f;
+    float ShotTimer = .25f;
     void Start()
     {
         CanShoot = true;

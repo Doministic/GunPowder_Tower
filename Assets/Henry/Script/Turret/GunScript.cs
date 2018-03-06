@@ -25,7 +25,10 @@ public class GunScript : MonoBehaviour
 
             }
         }
-
+    }
+    public void printStrings()
+    {
+        print("something");
     }
     public void readyToMove()
     {
