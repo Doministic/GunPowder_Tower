@@ -27,7 +27,7 @@ public class ReceiveButtonMessage : MonoBehaviour
         selected = !selected;
 		print (selected);
     }
-    public void GunButtonClick(GunModes currentMode)
+    public void GunButtonClick()
     {
         if (selected == true)
         {
