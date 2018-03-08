@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIButtons : MonoBehaviour
 {
+    GunScript SelectedTurrets;
+
 
     public bool Eco;
     public bool Auto;
@@ -11,7 +13,8 @@ public class UIButtons : MonoBehaviour
 
     void Start()
     {
-        GunScript SelectedTurrets = GetComponent<GunScript>();
+        SelectedTurrets = GetComponent<GunScript>();
+
     }
 
     // Update is called once per frame
@@ -24,6 +27,8 @@ public class UIButtons : MonoBehaviour
         if (Eco == true)
         {
             print(" Eco");
+            SelectedTurrets.printStrings();
+
         }
         if (Auto == true)
         {
