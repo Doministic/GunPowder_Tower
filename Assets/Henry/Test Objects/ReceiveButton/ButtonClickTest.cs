@@ -18,12 +18,11 @@ public class ButtonClickTest : MonoBehaviour
     {
 
     }
-    public void ButtonClickTestUI()
+    public void ButtonClickTestUI(string gunModeToSwitchTo)
     {
         foreach (GameObject test in testSceneObjects)
         {
-            selectedTestObjects.GunButtonClick();
+            test.GetComponent<ReceiveButtonMessage>().GunButtonClick(gunModeToSwitchTo);
         }
-
     }
 }
