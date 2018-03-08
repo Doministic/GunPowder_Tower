@@ -5,12 +5,9 @@ using UnityEngine;
 public class ButtonClickTest : MonoBehaviour
 {
     public GameObject[] testSceneObjects;
-    ReceiveButtonMessage selectedTestObjects;
     // Use this for initialization
     void Start()
     {
-        testSceneObjects = GameObject.FindGameObjectsWithTag("test");
-        selectedTestObjects = GetComponent<ReceiveButtonMessage>();
     }
 
     // Update is called once per frame
@@ -20,6 +17,8 @@ public class ButtonClickTest : MonoBehaviour
     }
     public void ButtonClickTestUI(string gunModeToSwitchTo)
     {
+        testSceneObjects = GameObject.FindGameObjectsWithTag("test");
+
         foreach (GameObject test in testSceneObjects)
         {
             test.GetComponent<ReceiveButtonMessage>().GunButtonClick(gunModeToSwitchTo);
