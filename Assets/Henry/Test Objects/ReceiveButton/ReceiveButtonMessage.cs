@@ -25,23 +25,26 @@ public class ReceiveButtonMessage : MonoBehaviour
     void OnMouseDown()
     {
         selected = !selected;
-		print (selected);
+        print(selected);
     }
     public void GunButtonClick(string gunModeToSwitchTo)
     {
         if (selected == true)
         {
-            if (currentMode == GunModes.Eco)
+            if (gunModeToSwitchTo == "Eco")
             {
-                print("ECO MODE!!");
+                currentMode = GunModes.Eco;
+                print("I am ECO Now!");
             }
-            if (currentMode == GunModes.Auto)
+            if (gunModeToSwitchTo == "Auto")
             {
-                print("AUTO MODE");
+                currentMode = GunModes.Auto;
+                print("I am AUTO Now!");
             }
-            if (currentMode == GunModes.Hold)
+            if (gunModeToSwitchTo == "Hold")
             {
-                print("HOLD FIRE!!");
+                currentMode = GunModes.Hold;
+                print("I am HOLDING Now!");
             }
         }
     }
