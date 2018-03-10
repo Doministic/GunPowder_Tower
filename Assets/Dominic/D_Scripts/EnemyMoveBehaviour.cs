@@ -2,58 +2,77 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMoveBehaviour : MonoBehaviour {
+public class EnemyMoveBehaviour : MonoBehaviour
+{
 
-	public Transform objectToMoveTo;
- 	public float maxMovementSpeed = 7.5f;
+    public Transform objectToMoveTo;
+    public float maxMovementSpeed = 7.5f;
     public float minMovementSpeed = 3.5f;
 
-	private float step = 0.0f;
-
-	private int health;
+    private float step = 0.0f;
+    public int health;
     private int maxHealth = 100;
     private int minHealth = 0;
+	private float distanceToTarget;
 
-	void Start()
-	{
-		health = maxHealth;
-		step = Random.Range(minMovementSpeed, maxMovementSpeed);
-	//	StartCoroutine(MoveTo(step)); 
-	}
+    void Start()
+    {
+		
+		Debug.Log(distanceToTarget);
+        health = maxHealth;
+        step = Random.Range(minMovementSpeed, maxMovementSpeed);
+        StartCoroutine(MoveTo(step));
+    }
 
-	/*IEnumerator MoveTo(float step){
-		while (true){
+    IEnumerator MoveTo(float step)
+    {
+        while (true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, objectToMoveTo.position, step * Time.deltaTime);
+            yield return null;
 			
-			yield return null;
-		}
-	}*/
+        }
+    }
 
-	void Update()
-	{
-		transform.position = Vector3.MoveTowards(transform.position, objectToMoveTo.position, step * Time.deltaTime);
-		if(Input.GetKeyDown(KeyCode.P)){
-			Time.timeScale = 0;
-		} else if (Input.GetKeyDown(KeyCode.L)){
-			Time.timeScale = 1;
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Time.timeScale = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            Time.timeScale = 1;
+        }
+		distanceToTarget = Vector2.Distance(transform.position, objectToMoveTo.position);
+        if (distanceToTarget < 5.0f)
+		{
+			Debug.Log("Coroutine Stopped, Movement stopped");
+			StopAllCoroutines();
 		}
-	}
 
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		if (other.gameObject.tag == "HomeBase" || other .gameObject.tag == "Base"){
-			Die();
-		}
-		else if(other.gameObject.tag == "regBullet"){
-			health -= 25;
-			if (health <= 0)
-			{
-				Die();
-			}
-				
-		}
-	}
+    }
 
-	void Die(){
-		Destroy(gameObject);
-	}
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Base")
+        {
+            Debug.LogWarning("Entered Base");
+            Die();
+        }
+        else if (other.gameObject.tag == "regBullet")
+        {
+            health -= 25;
+            if (health <= minHealth)
+            {
+                Die();
+            }
+
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
 }
