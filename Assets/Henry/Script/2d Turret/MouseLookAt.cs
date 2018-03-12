@@ -30,7 +30,7 @@ public class MouseLookAt : MonoBehaviour
             direction.Normalize();
             float zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
             Quaternion desiredRot = Quaternion.Euler(0, 0, zAngle);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRot, 90.0f * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRot, 90.0f * Time.fixedUnscaledDeltaTime);
             if (transform.rotation == desiredRot)
             {
                 iAmRotating = false;

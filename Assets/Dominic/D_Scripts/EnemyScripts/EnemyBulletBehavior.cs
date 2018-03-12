@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehavior : MonoBehaviour
-{
+public class EnemyBulletBehavior : MonoBehaviour {
 
-    public GameObject projectile;
+	public GameObject projectile;
+
+    private int bulletCount = 50;
+    private int minBullets = 0;
 
     private bool canShoot;
     private float timer = 0.0f;
@@ -18,11 +20,11 @@ public class BulletBehavior : MonoBehaviour
 
     void Update()
     {
-        timer += Time.fixedUnscaledDeltaTime;
+        timer += Time.deltaTime;
         if (timer >= shotTimer)
         {
             timer = timer - shotTimer;
-            if (canShoot == true)
+            if (canShoot == true && bulletCount > minBullets)
             {
                 SpawnBullet();
             }
@@ -32,7 +34,9 @@ public class BulletBehavior : MonoBehaviour
     private void SpawnBullet()
     {
         GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000.0f);
+        bullet.GetComponent<Rigidbody2D>().AddForce(transform.up * 200.0f);
+        bulletCount--;
+        Debug.Log(bulletCount);
     }
 
     public void CannotFire()
