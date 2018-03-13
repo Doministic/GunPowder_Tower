@@ -36,6 +36,7 @@ public class MouseLookAt : MonoBehaviour
         {
             Vector3 direction = MouseCursor.transform.position - transform.position;
             direction.Normalize();
+<<<<<<< HEAD
             zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
 
             Quaternion desiredRot = Quaternion.Euler(0, 0, zAngle - getParentRotation.eulerAngles.z);
@@ -47,6 +48,12 @@ public class MouseLookAt : MonoBehaviour
             }
 
             if (transform.localRotation == desiredRot)
+=======
+            float zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            Quaternion desiredRot = Quaternion.Euler(0, 0, zAngle);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRot, 90.0f * Time.fixedUnscaledDeltaTime);
+            if (transform.rotation == desiredRot)
+>>>>>>> Merge_Master
             {
                 iAmRotating = false;
             }
