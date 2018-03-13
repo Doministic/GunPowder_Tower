@@ -38,14 +38,14 @@ public class MouseLookAt : MonoBehaviour
             direction.Normalize();
             zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
 
-            Quaternion desiredRot = Quaternion.Euler(0, 0, zAngle - getParentRotation.eulerAngles.z);
+            desiredRot = Quaternion.Euler(0, 0, zAngle - getParentRotation.eulerAngles.z);
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, desiredRot, 90.0f * Time.unscaledDeltaTime);
 
 
             if (transform.localRotation == desiredRot)
             {
                 float zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                Quaternion desiredRot = Quaternion.Euler(0, 0, zAngle);
+                desiredRot = Quaternion.Euler(0, 0, zAngle);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRot, 90.0f * Time.fixedUnscaledDeltaTime);
             }
 
