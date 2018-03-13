@@ -12,11 +12,11 @@ public class GunBehaviour : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(Vector3.forward * 50.0f * Time.deltaTime);
+                transform.Rotate(Vector3.forward * 50.0f * Time.fixedUnscaledDeltaTime);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(Vector3.forward * -50.0f * Time.deltaTime);
+                transform.Rotate(Vector3.forward * -50.0f * Time.fixedUnscaledDeltaTime);
             }
         }
     }

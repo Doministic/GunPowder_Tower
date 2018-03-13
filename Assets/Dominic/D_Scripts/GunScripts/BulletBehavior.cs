@@ -18,7 +18,7 @@ public class BulletBehavior : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
+        timer += Time.fixedUnscaledDeltaTime;
         if (timer >= shotTimer)
         {
             timer = timer - shotTimer;
