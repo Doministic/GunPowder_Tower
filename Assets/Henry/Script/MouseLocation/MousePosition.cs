@@ -19,9 +19,11 @@ public class MousePosition : MonoBehaviour
     public void MoveToMousePosition()
     {
         Vector3 mosPos = Input.mousePosition;
-        mosPos.z = 10;
+
         mosPos = Camera.main.ScreenToWorldPoint(mosPos);
+        mosPos.z = 0;
         transform.position = mosPos;
+
         print("i moved");
     }
 }
