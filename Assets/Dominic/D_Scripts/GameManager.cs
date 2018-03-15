@@ -15,14 +15,25 @@ public class GameManager : BaseSingletonBehaviour<GameManager>
     }
 
     void Update()
-    {
-        timeRemaining -= Time.fixedUnscaledDeltaTime;
-
-        if (timeRemaining <= 0)
+    {    
+        if(!LevelManager.isPaused)
         {
-            SceneManager.LoadScene("01_MainMenu_A");
-            timeRemaining = maxTime;
+            timeRemaining -= Time.fixedUnscaledDeltaTime;
         }
+		else 
+		{
+			timeRemaining -= Time.deltaTime;
+		}
+
+        if (timeRemaining <= 0 && SceneManager.GetActiveScene().name == "02_Level_DayTime")
+        {
+			timeRemaining = maxTime;
+            SceneManager.LoadScene("02_Level_NightTime");
+        }
+		else if(timeRemaining <= 0 && SceneManager.GetActiveScene().name == "02_Level_NightTime"){
+			timeRemaining = maxTime;
+			SceneManager.LoadScene("02_Level_DayTime");
+		}
     }
 
     public float TimeRemaining

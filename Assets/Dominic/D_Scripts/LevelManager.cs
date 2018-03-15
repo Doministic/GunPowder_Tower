@@ -8,15 +8,13 @@ public class LevelManager : MonoBehaviour
     public static bool isPaused = false;
     public static bool isRealTimePaused = false;
 
-
     private GameObject pauseMenuUI;
-    private GameObject realTimePause;
-    private float realTimePauseDelay = 2.0f;
+    private float timeDelay = 5.0f;
+
 
     void Start()
     {
         float autoLoadNextLevel = 3.5f;
-        realTimePause = GameObject.Find("RealTimePause");
         pauseMenuUI = GameObject.Find("PauseMenu");
 
         if (SceneManager.GetActiveScene().buildIndex > 2)
@@ -30,12 +28,13 @@ public class LevelManager : MonoBehaviour
         {
             Invoke("LoadNextLevel", autoLoadNextLevel);
             pauseMenuUI = null;
-            realTimePause = null;
         }
     }
 
     void Update()
     {
+        timeDelay -= Time.unscaledDeltaTime;
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (isPaused)
@@ -47,20 +46,23 @@ public class LevelManager : MonoBehaviour
                 PauseGame();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.G))
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isRealTimePaused)
-            {
-                RealTimeResume();
-                realTimePauseDelay -= Time.fixedUnscaledDeltaTime;
-
-            }
-            else
-            {
-                RealTimePause();
-            }
+           RealTimePause();
         }
+        Debug.Log(timeDelay);
+        if (isRealTimePaused && timeDelay <= 0)
+            {
+                Debug.Log("Resume");
+                Resume();
+            }
     }
+
+    void FixedUpdate()
+    {
+       
+    }
+
     public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
@@ -83,22 +85,16 @@ public class LevelManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        isRealTimePaused = false;
+        timeDelay = 5.0f;
     }
 
-    public void RealTimePause()
-    {
+    public void RealTimePause(){
+        Time.timeScale = 0;
         isRealTimePaused = true;
-        Time.timeScale = 0f;
+        timeDelay = 5.0f;
     }
 
-    public void RealTimeResume()
-    {
-        if (realTimePauseDelay <= 0)
-        {
-            isRealTimePaused = false;
-            realTimePauseDelay = 10.0f;
-        }
-    }
     public void QuitGame()
     {
         Application.Quit();
