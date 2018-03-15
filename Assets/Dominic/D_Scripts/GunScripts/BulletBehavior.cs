@@ -18,11 +18,11 @@ public class BulletBehavior : MonoBehaviour
 
     void Update()
     {
-        timer += Time.fixedUnscaledDeltaTime;
+        timer += Time.deltaTime;
         if (timer >= shotTimer)
         {
             timer = timer - shotTimer;
-            if (canShoot == true)
+            if (CanFire())
             {
                 SpawnBullet();
             }
@@ -32,16 +32,11 @@ public class BulletBehavior : MonoBehaviour
     private void SpawnBullet()
     {
         GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000.0f);
+        bullet.GetComponent<Rigidbody2D>().AddForce(transform.up * 500.0f);
     }
 
-    public void CannotFire()
+    public bool CanFire()
     {
-        canShoot = false;
-    }
-
-    public void CanFire()
-    {
-        canShoot = true;
+        return canShoot;
     }
 }

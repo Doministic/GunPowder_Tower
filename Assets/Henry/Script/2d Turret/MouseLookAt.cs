@@ -9,11 +9,14 @@ public class MouseLookAt : MonoBehaviour
     GameObject MouseCursor;
     Quaternion desiredRot;
     bool iAmRotating;
+    bool canFire;
 
     void Start()
     {
         MouseCursor = GameObject.Find("MouseCursor");
         mosPos = MouseCursor.GetComponent<MousePosition>();
+        canFire = GetComponentInChildren<BulletBehavior>().CanFire();
+        canFire = true;
     }
 
     // Update is called once per frame
@@ -31,9 +34,11 @@ public class MouseLookAt : MonoBehaviour
             float zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
             Quaternion desiredRot = Quaternion.Euler(0, 0, zAngle);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRot, 90.0f * Time.fixedUnscaledDeltaTime);
+            canFire = false;
             if (transform.rotation == desiredRot)
             {
                 iAmRotating = false;
+                canFire = true;
             }
         }
     }

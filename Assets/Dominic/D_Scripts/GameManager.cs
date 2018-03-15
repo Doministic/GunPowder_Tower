@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : BaseSingletonBehaviour<GameManager> {
+public class GameManager : BaseSingletonBehaviour<GameManager>
+{
 
-	private float timeRemaining;
-	private float maxTime = 180;
+    private float timeRemaining;
+    private float maxTime = 180;
 
-	void Start () {
-		timeRemaining = maxTime;
-	}
-	
-	void Update () {
-		timeRemaining -= Time.deltaTime;
+    void Start()
+    {
+        timeRemaining = maxTime;
+    }
 
-		if (timeRemaining <= 0){
-			SceneManager.LoadScene("01_MainMenu_A");
-			timeRemaining = maxTime;
-		}
-	}
+    void Update()
+    {
+        timeRemaining -= Time.fixedUnscaledDeltaTime;
 
-	public float TimeRemaining{
-		get {return timeRemaining;}
-		set {timeRemaining = value;}
-	}
+        if (timeRemaining <= 0)
+        {
+            SceneManager.LoadScene("01_MainMenu_A");
+            timeRemaining = maxTime;
+        }
+    }
+
+    public float TimeRemaining
+    {
+        get { return timeRemaining; }
+        set { timeRemaining = value; }
+    }
 }

@@ -3,37 +3,63 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour {
-	public float autoLoadNextLevel = 3.5f;
-    public GameObject pauseMenuUI;
-
+public class LevelManager : MonoBehaviour
+{
     public static bool isPaused = false;
+    public static bool isRealTimePaused = false;
+
+
+    private GameObject pauseMenuUI;
+    private GameObject realTimePause;
+    private float realTimePauseDelay = 2.0f;
 
     private void Start()
     {
-        pauseMenuUI.SetActive(false);
+        float autoLoadNextLevel = 3.5f;
+        realTimePause = GameObject.Find("RealTimePause");
+        pauseMenuUI = GameObject.Find("PauseMenu");
+
         if (SceneManager.GetActiveScene().buildIndex > 2)
         {
-           // Debug.Log("Index is greater than 0");
+        pauseMenuUI.SetActive(false);
+
         }
         else
         {
             Invoke("LoadNextLevel", autoLoadNextLevel);
+            pauseMenuUI = null;
+            realTimePause = null;
         }
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P)){
-            if(isPaused){
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (isPaused)
+            {
                 Resume();
             }
-            else{
+            else
+            {
                 PauseGame();
             }
         }
+        else if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (isRealTimePaused)
+            {
+                RealTimeResume();
+                realTimePauseDelay -= Time.fixedUnscaledDeltaTime;
+
+            }
+            else
+            {
+                RealTimePause();
+            }
+        }
     }
-    public void LoadLevel(string levelName )
+    public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
     }
@@ -43,18 +69,32 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void PauseGame(){
+    public void PauseGame()
+    {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
-    public void Resume(){
+    public void Resume()
+    {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
 
+    public void RealTimePause()
+    {
+        isRealTimePaused = true;
+        realTimePauseDelay = 10.0f;
+        Time.timeScale = 0f;
+    }
+
+    public void RealTimeResume(){
+        if(realTimePauseDelay <= 0){
+            isRealTimePaused = false;
+        }
+    }
     public void QuitGame()
     {
         Application.Quit();
