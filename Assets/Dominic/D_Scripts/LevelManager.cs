@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     private GameObject realTimePause;
     private float realTimePauseDelay = 2.0f;
 
-    private void Start()
+    void Start()
     {
         float autoLoadNextLevel = 3.5f;
         realTimePause = GameObject.Find("RealTimePause");
@@ -21,8 +21,10 @@ public class LevelManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex > 2)
         {
-        pauseMenuUI.SetActive(false);
-
+            if (pauseMenuUI != null)
+            {
+                pauseMenuUI.SetActive(false);
+            }
         }
         else
         {
@@ -86,13 +88,15 @@ public class LevelManager : MonoBehaviour
     public void RealTimePause()
     {
         isRealTimePaused = true;
-        realTimePauseDelay = 10.0f;
         Time.timeScale = 0f;
     }
 
-    public void RealTimeResume(){
-        if(realTimePauseDelay <= 0){
+    public void RealTimeResume()
+    {
+        if (realTimePauseDelay <= 0)
+        {
             isRealTimePaused = false;
+            realTimePauseDelay = 10.0f;
         }
     }
     public void QuitGame()
