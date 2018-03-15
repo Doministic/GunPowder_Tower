@@ -6,6 +6,6 @@ public class BulletKill : MonoBehaviour {
 
 	public void Start()
 	{
-		Destroy(gameObject, 2);
+		Destroy(gameObject, 0.75f);
 	}
 }

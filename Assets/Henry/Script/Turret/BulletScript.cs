@@ -7,10 +7,10 @@ public class BulletScript : MonoBehaviour
     public GameObject projectile;
     bool CanShoot;
     float time = 0.0f;
-    float ShotTimer = 1.0f;
+    float ShotTimer = .25f;
     void Start()
     {
-        CanShoot = false;
+        CanShoot = true;
     }
     void Update()
     {
@@ -21,6 +21,7 @@ public class BulletScript : MonoBehaviour
             time = time - ShotTimer;
             if (CanShoot == true)
             {
+                transform.localEulerAngles = new Vector3(Random.Range(-15,15), 0, transform.localEulerAngles.z);
                 SpawnBullet();
             }
         }
@@ -28,7 +29,7 @@ public class BulletScript : MonoBehaviour
     public void SpawnBullet()
     {
         GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 1000.0f);
+        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 2000.0f);
     }
     public void CantFire()
     {
