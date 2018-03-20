@@ -17,9 +17,8 @@ public class SkyRotation : MonoBehaviour {
     void Update()
     {
         transform.Rotate(eulerAngles: Vector3.forward * Time.deltaTime);
-        cur_Deg = transform.eulerAngles.z;
-        if (Input.GetKeyDown("x"))
-           1
+        //cur_Deg = transform.eulerAngles.z;
+        //if (Input.GetKeyDown("x"))
 
     }
 
