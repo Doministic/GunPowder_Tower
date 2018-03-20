@@ -16,7 +16,7 @@ public class GameManager : BaseSingletonBehaviour<GameManager>
 
     void Update()
     {    
-        if(!LevelManager.isPaused)
+        if(!LevelManagerMain.isPaused)
         {
             timeRemaining -= Time.fixedUnscaledDeltaTime;
         }
