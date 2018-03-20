@@ -16,10 +16,10 @@ public class SkyRotation : MonoBehaviour {
 
     void Update()
     {
-        cur_Deg += 1f;
         transform.Rotate(eulerAngles: Vector3.forward * Time.deltaTime);
-       // if (Input.GetKeyDown("space"))
-       
+        cur_Deg = transform.eulerAngles.z;
+        if (Input.GetKeyDown("x"))
+           1
 
     }
 
