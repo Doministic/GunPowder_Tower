@@ -56,8 +56,17 @@ public class MouseLookAt : MonoBehaviour
 
             if (transform.localRotation == desiredRot)
             {
+<<<<<<< HEAD
                 float zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
                 Quaternion desiredRot = Quaternion.Euler(0, 0, zAngle);
+=======
+<<<<<<< HEAD
+                zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+=======
+                float zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+>>>>>>> Henry_Branch
+                desiredRot = Quaternion.Euler(0, 0, zAngle);
+>>>>>>> Henry_Branch
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRot, 90.0f * Time.fixedUnscaledDeltaTime);
             }
 

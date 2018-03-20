@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD
 public class SpawnEnemyBehaviour : MonoBehaviour {
+=======
+public class SpawnEnemyBehaviourMain : MonoBehaviour {
+>>>>>>> Henry_Branch
 
 	public float timeCounter = 40.0f;
 	public GameObject EnemyToSpawn;
