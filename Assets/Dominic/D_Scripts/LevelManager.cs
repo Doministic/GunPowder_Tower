@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+<<<<<<< HEAD
 public class LevelManager : MonoBehaviour
 {
+=======
+public class LevelManagerMain : MonoBehaviour {
+	public float autoLoadNextLevel = 3.5f;
+    public GameObject pauseMenuUI;
+
+>>>>>>> Henry_Branch
     public static bool isPaused = false;
     public static bool isRealTimePaused = false;
 
