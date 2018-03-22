@@ -10,7 +10,7 @@ public class GunScript : MonoBehaviour
     {
         MosLocation = GameObject.Find("MouseCursor");
         transform.LookAt(MosLocation.transform);
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.Clamp(transform.localEulerAngles.y, 45, 135), transform.localEulerAngles.z);
+        transform.localEulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.localEulerAngles.z, 45, 135));
     }
 
     void Update()
@@ -21,7 +21,7 @@ public class GunScript : MonoBehaviour
             {
                 print("space pressed");
                 transform.LookAt(MosLocation.transform);
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.Clamp(transform.localEulerAngles.y, 45, 135), transform.localEulerAngles.z);
+                transform.localEulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.localEulerAngles.z, 45, 135));
 
             }
         }

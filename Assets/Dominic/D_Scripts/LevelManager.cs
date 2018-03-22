@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     private GameObject pauseMenuUI;
     private float timeDelay = 5.0f;
+    private float realTimeTimerDelay = 5.0f;
 
 
     void Start()
@@ -33,8 +34,8 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        timeDelay -= Time.unscaledDeltaTime;
-
+        timeDelay -= Time.fixedUnscaledDeltaTime;
+        realTimeTimerDelay -= Time.fixedUnscaledDeltaTime;
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (isPaused)
@@ -46,14 +47,12 @@ public class LevelManager : MonoBehaviour
                 PauseGame();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.Space) && realTimeTimerDelay <= 0)
         {
            RealTimePause();
         }
-        Debug.Log(timeDelay);
         if (isRealTimePaused && timeDelay <= 0)
             {
-                Debug.Log("Resume");
                 Resume();
             }
     }
@@ -87,6 +86,7 @@ public class LevelManager : MonoBehaviour
         isPaused = false;
         isRealTimePaused = false;
         timeDelay = 5.0f;
+        realTimeTimerDelay = 10.0f;
     }
 
     public void RealTimePause(){

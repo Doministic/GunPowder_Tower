@@ -20,7 +20,6 @@ public class BackgroundImageBehaviour : MonoBehaviour {
             scale *= cameraSize.y / spriteSize.y;
         }
         
-        transform.position = Vector2.zero; 
         transform.localScale = scale;
 
 		spriteRenderer.sortingOrder = 4;

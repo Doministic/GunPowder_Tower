@@ -5,12 +5,12 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public GameObject projectile;
-    bool CanShoot;
+    bool canShoot;
     float time = 0.0f;
     float ShotTimer = .25f;
     void Start()
     {
-        CanShoot = true;
+        canShoot = true;
     }
     void Update()
     {
@@ -19,7 +19,7 @@ public class BulletScript : MonoBehaviour
         if (time >= ShotTimer)
         {
             time = time - ShotTimer;
-            if (CanShoot == true)
+            if (canShoot == true)
             {
                 transform.localEulerAngles = new Vector3(Random.Range(-15,15), 0, transform.localEulerAngles.z);
                 SpawnBullet();
@@ -29,16 +29,10 @@ public class BulletScript : MonoBehaviour
     public void SpawnBullet()
     {
         GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 2000.0f);
+        bullet.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000.0f);
     }
-    public void CantFire()
+  public bool CanFire()
     {
-        CanShoot = false;
-        print("I Cant shoot");
-    }
-    public void CanFire()
-    {
-        CanShoot = true;
-        print("I Cant shoot");
+        return canShoot;
     }
 }

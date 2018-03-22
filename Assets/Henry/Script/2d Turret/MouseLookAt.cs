@@ -21,7 +21,7 @@ public class MouseLookAt : MonoBehaviour
         MouseCursor = GameObject.Find("MouseCursor");
         mosPos = MouseCursor.GetComponent<MousePosition>();
 
-        canFire = GetComponentInChildren<BulletBehavior>().CanFire();
+        canFire = GetComponentInChildren<BulletScript>().CanFire();
         canFire = true;
 
         GetParentsRotation();

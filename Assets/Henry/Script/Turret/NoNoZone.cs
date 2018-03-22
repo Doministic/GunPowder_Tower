@@ -5,11 +5,11 @@ using UnityEngine;
 public class NoNoZone : MonoBehaviour
 {
     // Use this for initialization
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         print("Something WENT IN ME!!!!");
     }
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         print("Something went boop");
     }

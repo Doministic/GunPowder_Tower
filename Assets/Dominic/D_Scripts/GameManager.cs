@@ -7,7 +7,7 @@ public class GameManager : BaseSingletonBehaviour<GameManager>
 {
 
     private float timeRemaining;
-    private float maxTime = 180;
+    private float maxTime = 181f;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class GameManager : BaseSingletonBehaviour<GameManager>
     {    
         if(!LevelManager.isPaused)
         {
-            timeRemaining -= Time.fixedUnscaledDeltaTime;
+            timeRemaining -= Time.unscaledDeltaTime;
         }
 		else 
 		{
